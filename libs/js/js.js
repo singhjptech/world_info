@@ -241,7 +241,6 @@ function get_country_info(country_code) {
     },
     success: function (response) {
       //map.spin(false);
-      $('.loading-circle').hide();
       let details = $.parseJSON(response);
       console.log(details);
       lat = details.latlng[0];
@@ -262,6 +261,7 @@ function get_country_info(country_code) {
         "href",
         "https://en.wikipedia.org/wiki/" + details.name
       );
+      $('.loading-circle').hide();
     },
   });
 }
@@ -305,8 +305,8 @@ function get_covid_data() {
       $("#covid_activePerOneMillion").html(details.activePerOneMillion);
       $("#covid_recoveredPerOneMillion").html(details.recoveredPerOneMillion);
      // map.spin(false);
-      $('.loading-circle').hide();
       $("#coronoModal").modal();
+      $('.loading-circle').hide();
     },
   });
 }
@@ -355,8 +355,8 @@ function get_weather_data() {
         parseInt(details["daily"][0]["temp"]["day"]) + "°"
       );
       //map.spin(false);
-      $('.loading-circle').hide();
       $("#weatherModal").modal();
+      $('.loading-circle').hide();
     },
   });
 }
@@ -364,7 +364,6 @@ function get_weather_data() {
 function get_news_data() {
   $("#news_data").html("");
   //map.spin(true);
-  $('.loading-circle').hide();
   $.ajax({
     url: "libs/php/getNewsInfo.php",
     data: {
@@ -381,6 +380,7 @@ function get_news_data() {
       //map.spin(false);
       $('.loading-circle').hide();
       $("#newsModal").modal();
+      $('.loading-circle').hide();
     },
   });
 }
