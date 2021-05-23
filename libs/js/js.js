@@ -11,10 +11,10 @@ let lng;
 let Esri_WorldStreetMap;
 
 $(document).ready(function () {
-  $("#country_info .card-body").css(
-    "max-height",
-    $(window).height() - 71 - 10 + "px"
-  );
+  // $("#country_info .card-body").css(
+  //   "max-height",
+  //   $(window).height() - 71 - 10 + "px"
+  // );
   map = L.map("map", {
     attributionControl: false,
   }).setView([0, 0], 1.5);
@@ -218,14 +218,14 @@ function zoomToCountry(country_code) {
 }
 
 function get_country_info(country_code) {
-  if ($("#country_info").css("left") !== "5px") {
-    $("#country_info").animate({
-      left: "5px"
-    }, 1000);
-    $(".pull_country_info_popup").animate({
-      left: "-40px"
-    }, 1000);
-  }
+  // if ($("#country_info").css("left") !== "5px") {
+  //   $("#country_info").animate({
+  //     left: "5px"
+  //   }, 1000);
+  //   $(".pull_country_info_popup").animate({
+  //     left: "-40px"
+  //   }, 1000);
+  // }
   // map.spin(true, {
   //   top: 180,
   //   left: 150
@@ -237,7 +237,7 @@ function get_country_info(country_code) {
     url: "libs/php/getCountryInfo.php",
     type: "GET",
     data: {
-      country_code: country_code
+      country_code: country_code_global
     },
     success: function (response) {
       //map.spin(false);
@@ -262,26 +262,29 @@ function get_country_info(country_code) {
         "https://en.wikipedia.org/wiki/" + details.name
       );
       $('.loading-circle').hide();
+      $("#countryInfoModal").modal();
     },
   });
 }
 
 function hide_popup() {
-  $("#country_info").animate({
-    left: "-999px"
-  }, 1000);
-  $(".pull_country_info_popup").animate({
-    left: "0"
-  }, 1000);
+ 
+  // $("#country_info").animate({
+  //   left: "-999px"
+  // }, 1000);
+  // $(".pull_country_info_popup").animate({
+  //   left: "0"
+  // }, 1000);
 }
 
 function show_popup() {
-  $("#country_info").animate({
-    left: "5px"
-  }, 1000);
-  $(".pull_country_info_popup").animate({
-    left: "-40px"
-  }, 1000);
+  get_country_info(country_code_global);
+  // $("#country_info").animate({
+  //   left: "5px"
+  // }, 1000);
+  // $(".pull_country_info_popup").animate({
+  //   left: "-40px"
+  // }, 1000);
 }
 
 function get_covid_data() {
@@ -295,15 +298,16 @@ function get_covid_data() {
     },
     success: function (response) {
       let details = $.parseJSON(response);
-      $("#covid_total_cases").html(details.cases);
-      $("#covid_active").html(details.active);
-      $("#covid_recovered").html(details.recovered);
-      $("#covid_deaths").html(details.deaths);
-      $("#covid_todayCases").html(details.todayCases);
-      $("#covid_todayRecovered").html(details.todayRecovered);
-      $("#covid_todayDeaths").html(details.todayDeaths);
-      $("#covid_activePerOneMillion").html(details.activePerOneMillion);
-      $("#covid_recoveredPerOneMillion").html(details.recoveredPerOneMillion);
+      $("#covid_total_cases").html(Number(details.cases).toLocaleString('en'));
+      //$("#covid_total_cases").html(details.cases);
+      $("#covid_active").html(Number(details.active).toLocaleString('en'));
+      $("#covid_recovered").html(Number(details.recovered).toLocaleString('en'));
+      $("#covid_deaths").html(Number(details.deaths).toLocaleString('en'));
+      $("#covid_todayCases").html(Number(details.todayCases).toLocaleString('en'));
+      $("#covid_todayRecovered").html(Number(details.todayRecovered).toLocaleString('en'));
+      $("#covid_todayDeaths").html(Number(details.todayDeaths).toLocaleString('en'));
+      $("#covid_activePerOneMillion").html(Number(details.activePerOneMillion).toLocaleString('en'));
+      $("#covid_recoveredPerOneMillion").html(Number(details.recoveredPerOneMillion).toLocaleString('en'));
      // map.spin(false);
       $("#coronoModal").modal();
       $('.loading-circle').hide();
@@ -385,6 +389,32 @@ function get_news_data() {
   });
 }
 
+
+function get_holidays_data() {
+  $("#holiday_data").html("");
+  //map.spin(true);
+  $.ajax({
+    url: "libs/php/getAirportInfo.php",
+    data: {
+      country_name: country_code_global
+    },
+    method: "GET",
+    success: function (response) {
+      response = JSON.parse(response);
+      //console.log(response);
+      //const data = response["articles"];
+      const data = response;
+      for (let i = 0; i < data.length; i++) {
+        $("#holiday_data").append(get_holiday_card(data[i]));
+      }
+      //map.spin(false);
+      $('.loading-circle').hide();
+      $("#holidayModal").modal();
+      $('.loading-circle').hide();
+    },
+  });
+}
+
 function get_news_card(data) {
   const card =
     '<div class="card" style="width: 20rem;"> <img class="card-img-top" src="' +
@@ -396,5 +426,11 @@ function get_news_card(data) {
     '</p> <a href="' +
     data["url"] +
     '" target="_blank" class="btn btn-primary">Details</a> </div> </div>';
+  return card;
+}
+
+function get_holiday_card(data) {
+  console.log(data); console.log('as');
+  const card ='<tr><th>'+data["name"]+'</th><td class="text-align">'+data["date_day"]+'/'+data["date_month"]+'</td></tr>';  
   return card;
 }

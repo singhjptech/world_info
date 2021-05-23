@@ -7,10 +7,10 @@
 	<meta name="author" content="Jatinder Singh">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="vendor/css/all.css"/>
-    <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
-    <link href="vendor/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="vendor/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <!-- <link href="libs/css/select2.min.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="libs/css/bootstrap.min.css">
     <link rel="stylesheet" href="libs/css/style.css">      
      
     <!-- Leaflet -->
@@ -23,8 +23,8 @@
 
 </head>
 <body>
-  <div class="loader" id="loader">
-    <img src="libs/imgs/loader.svg" alt="loader">
+  <div class="loader" id="loader" style="">
+    <img src="libs/img/loader.svg" alt="loader">
   </div>
   <!-- Single Page Map Layout With a Pop up Modal Overlay -->
   <div class="container-fluid">
@@ -81,13 +81,100 @@
         <div id="map_sibling_top">
          
         </div>
-        <div id="country_info">
+        <!-- <div id="country_info">
           <div class="card m-10">
             <div class="card-header model-header-color">
               <i class="fas fa-arrow-left error-class" onclick="hide_popup()"></i>
-              <h2 id="country_name"></h2>
+               <h2 id="country_name"></h2> 
             </div>
             <div class="card-body pb-10 model-body">
+               <table class="table table-bordered">
+                <tr>
+                  <th>Capital</th>
+                  <td id="country_capital"></td>
+                </tr>
+                <tr>
+                  <th>Region</th>
+                  <td id="country_region"></td>
+                </tr>
+                <tr>
+                  <th>Time zones</th>
+                  <td id="country_timezones"></td>
+                </tr>
+                <tr>
+                  <th>Population</th>
+                  <td id="country_population"></td>
+                </tr>
+                <tr>
+                  <th>Flag</th>
+                  <td>
+                    <img src="" style="height: 50px" id="country_flag" />
+                  </td>
+                </tr>
+                <tr>
+                  <th>Currency</th>
+                  <td id="country_currency"></td>
+                </tr>
+                <tr>
+                  <th>Currency symbol</th>
+                  <td id="country_symbol"></td>
+                </tr>
+                <tr>
+                  <th>Wikipedia Page</th>
+                  <td>
+                    <a href="" target="_blank" class="text-dark" id="country_wikipedia">Click Here</a>
+                  </td>
+                </tr>
+              </table> 
+               <div class="text-center">
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target=""
+                    onclick="get_covid_data();">
+                    <i class="fal fa-shield-virus"></i> Covid
+                  </button>
+                  <button type="button" class="btn btn-success" data-toggle="modal" data-target=""
+                    onclick="get_weather_data();">
+                    <i class="fas fa-cloud-sun"></i> Weather
+                  </button>
+                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target=""
+                    onclick="get_news_data();">
+                    <i class="far fa-newspaper"></i> News
+                  </button>
+                </div>
+              </div> 
+            </div>
+          </div>
+        </div> -->
+        <button class="btn btn-primary pull_country_info_popup" onclick="get_country_info();">
+          <i class="fas fa-arrow-right">country info</i>
+        </button>
+         <button class="btn btn-primary get_covid_data_class" onclick="get_covid_data();">
+          <i class="fas fa-arrow-right">covid </i>
+        </button>
+         <button class="btn btn-primary get_weather_data_class" onclick="get_weather_data();">
+          <i class="fas fa-arrow-right">weather</i>
+        </button>
+         <button class="btn btn-primary get_news_data_class" onclick="get_news_data();">
+          <i class="fas fa-arrow-right">news</i>
+        </button> 
+         <button class="btn btn-primary get_news_data_class" onclick="get_holidays_data();">
+          <i class="fas fa-arrow-right">holidays</i>
+        </button> 
+        <div id="map"></div>
+      </div>
+
+        <!-- Country Info -->
+      <div class="modal fade" id="countryInfoModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header model-header-color">
+              <h4 class="modal-title text-warning">Country Info</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+             <h2 id="country_name"></h2>
+            <div class="modal-body" id="covid_data">
               <table class="table table-bordered">
                 <tr>
                   <th>Capital</th>
@@ -126,30 +213,17 @@
                   </td>
                 </tr>
               </table>
-              <div class="text-center">
-                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target=""
-                    onclick="get_covid_data();">
-                    <i class="fal fa-shield-virus"></i> Covid
-                  </button>
-                  <button type="button" class="btn btn-success" data-toggle="modal" data-target=""
-                    onclick="get_weather_data();">
-                    <i class="fas fa-cloud-sun"></i> Weather
-                  </button>
-                  <button type="button" class="btn btn-warning" data-toggle="modal" data-target=""
-                    onclick="get_news_data();">
-                    <i class="far fa-newspaper"></i> News
-                  </button>
-                </div>
-              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
             </div>
           </div>
         </div>
-        <button class="btn btn-primary pull_country_info_popup" onclick="show_popup();">
-          <i class="fas fa-arrow-right"></i>
-        </button>
-        <div id="map"></div>
       </div>
+
+
       <!-- Corona Data -->
       <div class="modal fade" id="coronoModal">
         <div class="modal-dialog modal-lg">
@@ -164,39 +238,39 @@
               <table class="table table-bordered table-striped table-hover">
                 <tr>
                   <th>Total cases</th>
-                  <td id="covid_total_cases"></td>
+                  <td id="covid_total_cases" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Active</th>
-                  <td id="covid_active"></td>
+                  <td id="covid_active" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Recovered</th>
-                  <td id="covid_recovered"></td>
+                  <td id="covid_recovered" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Deaths</th>
-                  <td id="covid_deaths"></td>
+                  <td id="covid_deaths" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Today cases</th>
-                  <td id="covid_todayCases"></td>
+                  <td id="covid_todayCases" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Today Recovered</th>
-                  <td id="covid_todayRecovered"></td>
+                  <td id="covid_todayRecovered" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Today Deaths</th>
-                  <td id="covid_todayDeaths"></td>
+                  <td id="covid_todayDeaths" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Active per Million</th>
-                  <td id="covid_activePerOneMillion"></td>
+                  <td id="covid_activePerOneMillion" class="text-align"></td>
                 </tr>
                 <tr>
                   <th>Recovered per Million</th>
-                  <td id="covid_recoveredPerOneMillion"></td>
+                  <td id="covid_recoveredPerOneMillion" class="text-align"></td>
                 </tr>
               </table>
             </div>
@@ -260,15 +334,43 @@
           </div>
         </div>
       </div>
+
+       <!-- Holiday Data -->
+      <div class="modal fade" id="holidayModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header model-header-color">
+              <h4 class="modal-title text-warning">Holidays</h4>
+              <button type="button" class="close" data-dismiss="modal">
+                &times;
+              </button>
+            </div>
+            <div class="modal-body" >
+                <table class="table table-bordered table-striped table-hover" id="holiday_data">
+                
+                
+                
+              </table>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
-  <script src="vendor/js/leaflet.js"></script>
+  <script src="libs/js/leaflet.js"></script>
   <script src="libs/js/spin.min.js"></script>
   <script src="libs/js/leaflet.spin.min.js"></script>
-  <script src="vendor/js/jquery-min.js"></script>
-  <script src="vendor/js/jquery-ui.min.js"></script>
-  <script src="vendor/js/select2.min.js"></script>
-  <script src="vendor/js/bootstrap.min.js"></script>
+  <script src="libs/js/jquery-min.js"></script>
+  <script src="libs/js/jquery-ui.min.js"></script>
+  <!-- <script src="libs/js/select2.min.js"></script> -->
+  <script src="libs/js/bootstrap.min.js"></script>
   <script src="libs/js/leaflet.extra-markers.min.js"></script>
   <script src="libs/js/js.js"></script> 
 </body>
