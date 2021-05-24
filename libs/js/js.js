@@ -75,8 +75,9 @@ function get_user_location() {
           url: "libs/php/getCountryCodeFromLatLng.php?lat=" +
             latitude +
             "&lng=" +
-            longitude +
-            "&username=jsingh318",
+            longitude,
+            /* +
+            "&username=jsingh318",*/
           type: "GET",
           success: function (json) {
             map.spin(false);
@@ -128,7 +129,7 @@ function get_nearby_cities(east, west, north, south) {
       west: west,
       north: north,
       south: south,
-      username: "jsingh318",
+      //username: "jsingh318",
     },
     success: function (json) {
       json = JSON.parse(json);
@@ -165,7 +166,7 @@ function get_nearby_wikipedia(east, west, north, south) {
       west: west,
       north: north,
       south: south,
-      username: "jsingh318",
+      //username: "jsingh318",
     },
     success: function (json) {
       json = JSON.parse(json);
@@ -433,4 +434,21 @@ function get_holiday_card(data) {
   console.log(data); console.log('as');
   const card ='<tr><th>'+data["name"]+'</th><td class="text-align">'+data["date_day"]+'/'+data["date_month"]+'</td></tr>';  
   return card;
+}
+function get_airports_data() {
+ // $("#holiday_data").html("");
+  //map.spin(true);
+  $.ajax({
+    url: "libs/php/getAirpInfo.php",
+    data: {
+      country_name: country_code_global
+    },
+    method: "GET",
+    success: function (response) {
+      response = JSON.parse(response);
+      console.log(response);
+      
+  
+    },
+  });
 }
