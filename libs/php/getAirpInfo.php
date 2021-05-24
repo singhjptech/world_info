@@ -1,7 +1,9 @@
 <?php
+$country_code = $_GET['country_name'];
+
 $curl = curl_init();
 curl_setopt_array($curl, [
-  CURLOPT_URL => "https://www.air-port-codes.com/api/v1/multi?term=airport&countries=IN",
+  CURLOPT_URL => "https://www.air-port-codes.com/api/v1/multi?term=airport&countries=".$country_code,
   CURLOPT_RETURNTRANSFER => true,
   CURLOPT_FOLLOWLOCATION => true,
   CURLOPT_ENCODING => "",

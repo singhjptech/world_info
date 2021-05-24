@@ -436,7 +436,7 @@ function get_holiday_card(data) {
   return card;
 }
 function get_airports_data() {
- // $("#holiday_data").html("");
+  $("#airport_data").html("");
   //map.spin(true);
   $.ajax({
     url: "libs/php/getAirpInfo.php",
@@ -446,9 +446,24 @@ function get_airports_data() {
     method: "GET",
     success: function (response) {
       response = JSON.parse(response);
-      console.log(response);
-      
+      console.log(response['airports']);
+      const data = response['airports'];
+      for (let i = 0; i < data.length; i++) {
+        $("#airport_data").append(get_airport_card(data[i]));
+      }
+      //map.spin(false);
+      $('.loading-circle').hide();
+      $("#airportModal").modal();
+      $('.loading-circle').hide();
   
     },
   });
+}
+
+
+function get_airport_card(data) {
+  console.log(data); console.log('as');
+  const card ='<tr><th>'+data["name"]+'</th><td class="text-align">'+data["city"]+'</td></tr>'; 
+  //const card ='<tr><th>Test</th><td class="text-align">Demo</td></tr>'; 
+  return card;
 }
