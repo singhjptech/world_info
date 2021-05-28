@@ -24,6 +24,30 @@
     .easy-button-button{
     width:40px;
     height:40px;}
+
+
+.select_country_items {
+    position: absolute;
+    background: #ffffff;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.20);
+}
+.select_country_items select {
+    background: rgb(239, 239, 239);
+    color: #000;
+    height: 38px;
+    border: 1px solid #4a4a4a;
+    padding: 0 10px;
+    outline: none;
+}
+.select_country_items select:focus {
+    outline: none;
+}  
+    
+    
   </style>
 
 </head>
@@ -31,9 +55,14 @@
   <div class="loader" id="loader" style="">
     <img src="libs/img/loader.svg" alt="loader">
   </div>
+  <div class="select_country_items">
+    <select id="country_list" onchange="zoomToCountry(this.value)">
+      <option value="">Select Country</option>
+    </select>
+  </div>
   <!-- Single Page Map Layout With a Pop up Modal Overlay -->
   <div class="container-fluid">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark"  id="navbar">
+    <!--<nav class="navbar navbar-expand-md navbar-dark bg-dark"  id="navbar">
         <a class="navbar-brand" href="#">World Info <i class="fa fa-wikipedia-w pediacolor"></i></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
           <span class="navbar-toggler-icon"></span>
@@ -71,16 +100,10 @@
                     </div>
                 </a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <div>
-                        <button type="button" class="btn btn-success btn_select" id="select">Select</button>
-                    </div>
-                </a>
-            </li>   -->  
+            
             </ul>
         </div>  
-    </nav>
+    </nav>-->
     <div class="row">
       <div class="col-md-12" id="map_parent">
         <div id="map_sibling_top">
@@ -178,7 +201,7 @@
 
         <!-- Country Info -->
       <div class="modal fade" id="countryInfoModal">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
           <div class="modal-content" id="popup">
             <div class="modal-header model-header-color">
               <h4 class="modal-title text-warning">Country Info</h4>
@@ -239,7 +262,7 @@
 
       <!-- Corona Data -->
       <div class="modal fade" id="coronoModal">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
           <div class="modal-content" id="popup">
             <div class="modal-header model-header-color">
               <h4 class="modal-title text-warning">Covid Details</h4>
@@ -330,7 +353,7 @@
       </div>
       <!-- News Data -->
       <div class="modal fade" id="newsModal">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
           <div class="modal-content"  id="popup">
             <div class="modal-header model-header-color">
               <h4 class="modal-title text-warning">Latest News</h4>
@@ -350,7 +373,7 @@
 
        <!-- Holiday Data -->
       <div class="modal fade" id="holidayModal">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
           <div class="modal-content" id="popup">
             <div class="modal-header model-header-color" >
               <h4 class="modal-title text-warning">Holidays</h4>
@@ -377,7 +400,7 @@
 
       <!-- Airport Data -->
       <div class="modal fade" id="airportModal">
-        <div class="modal-dialog modal-lg" >
+        <div class="modal-dialog modal-md" >
           <div class="modal-content" id="popup">
             <div class="modal-header model-header-color" >
               <h4 class="modal-title text-warning">Airports</h4>
