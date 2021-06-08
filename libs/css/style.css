@@ -1,193 +1,224 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@600&family=Josefin+Sans&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&display=swap');
 
-.loader img {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+* {
+    font-family: 'Noto Sans', sans-serif;
 }
-.image-container {
-    margin: 10px 30%;
+
+#loader-wrapper {
+    background-color: #E8AE71;
+    z-index: 99999;
 }
-#selectModalLabel{
-    font-family: 'Josefin Sans', sans-serif;
-    color: firebrick;
-    padding: 20px !important;
+
+#globe {
+    color: white;
+    height: 10%;
+    width: 10%;
+    margin-top: 20%;
+    margin-left: 45%;
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
+    animation: spin 4s linear infinite;
 }
-.title_list{
-    font-family: 'Zen Dots', cursive;
-    color: darkcyan;
-    font-size: 15px;
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
 }
-.dis_countryName_before{
-    color: firebrick;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 20px;
+
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
-#country:focus{
-    outline: none;
+
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
-#country{
-    height: 35px;
-    border-radius: 10px;
-    background: antiquewhite;
-    border-color: burlywood;
+
+h1, h2, h3, h4, h5 {
+    font-size: 1em;
 }
-.modal-body{
-    display: flex;
-    justify-content: center;
+
+#select {
+    width: 100%;
+    color: black;
+    border-radius: 3px;
+    font-size: 1em;
 }
-#continue{
-    padding-left: 10px !important;
-    padding-right: 10px !important;
-}
-option{
-    color: firebrick;
-}
-.title_li{
-    font-family: 'Josefin Sans', sans-serif;
-    color: firebrick;
-    font-size: 20px;
-}
-.modal-header{
-    padding: 5px 10px;
-}
-.modal-footer{
-    padding: 0px;
-}
-.exp_text>span{
-    float: right;
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 20px;
-    color: firebrick;
-}
-.dis_countryname{
-    font-family: 'Zen Dots', cursive;
-    font-size: 30px;
-    color: darkgreen;
-}
-.list_item{
-    font-size: 20px;
-    font-family: 'Josefin Sans', sans-serif;
-    color: darkcyan;
-}
-.btn_reload{
+
+#search_container {
     position: absolute;
-    top: 10px!important;
-    right: 10px!important;
-    font-family: 'Josefin Sans', sans-serif;
-    z-index: 1;
-    box-shadow: 5px 10px 18px #888888;
-}
-.btn_next{
-    position: absolute;
-    top: 10px !important;
-    right: 100px !important;
-    z-index: 1;
-}
-body{
-    background-color: bisque;
-}
-#body{
-    display: none;
-}
-button>a{
-    color: #fff;
-}
-button>a:hover{
-    color: #fff;
-    text-decoration: none;
-}
-.map{
-    margin-top: 15px;
-    width: 60%;
-    height: 60%;
-}
-.back_effect{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    background-color: antiquewhite;
-    box-shadow: 5px 10px 18px #888888;
-}
-.select_country_items{
-    display: flex;
-    justify-content: center;
-}
-.align-center{
-    align-items: center !important;
-    margin: auto!important;
-}
-.btn_select{
-    font-family: 'Josefin Sans', sans-serif;
-}
-.btn-danger{
-    font-family: 'Josefin Sans', sans-serif;
-    font-size: 20px;
-}
-.loading-circle{
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.model-header-color{
-    background-color: #ffe4c4 !important;
-}
-.error-class{
-    margin-right: 16px !important;
-}
-
-#country_name{
-    display: inline !important;
-}
-.model-body{
-    overflow-y: auto !important;
-}
-.navbar-brand{
-    font-family: 'Zen Dots', cursive; color: darkcyan; font-size:30px!important
-}
-.pediacolor{
-    color: #fff !important;
-}
-.text-align{
-    text-align: right;
-}
-
-
-.button-popup {
     z-index: 999;
-    position: absolute;
-    /*margin: 10px 0px 0px 15px;*/
+    height: 50px;
+    background-color: transparent;
+    border: transparent;
 }
 
-.easy-button-button{
-    margin: 10px 0px 0px 15px;
+.modal draggable fade {
+    z-index: 9999;
 }
 
-.button-style{
+
+.modal-header {
+    background-color: #E8AE71;
+    color: white;
+    font-size: 1em;
+}
+
+#weather_table {
+    background-color: #E8AE71;
+    color: white;
+    justify-content: center;
+    text-align: center; 
+    width: 100%;
+}
+
+#country_weather, #degreeToggleContainer {
+    padding: 1em !important;
+}
+
+#day_0_speed_mph, #day_0_speed_ms {
+    padding-left: 50px;
+}
+
+#day_0, #day_1, #day_2, #day_3, #day_4 {
+    color: white;
+}
+
+.covid_data {
+    text-align: right !important;
+}
+
+#table_1, #table_2, #table_3, #table_4, #table_5 {
+    border-collapse: separate;
+    border-spacing: 1em;
+}
+
+.close {
+    color: white;
+}
+
+#country {
+    font-size: 2em;
+    text-align: center;
+    padding-top: 20px;
+}
+
+.carousel-item .active {
+    height: 300px;
+    width: 300px;
+    align-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: #E8AE71;
+}
+
+#news .modal-content {
+    height: 500px;
+    width: auto;
+}
+
+.modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.a {
+    background-color: #b6c2bf;
+}
+
+.b {
+    background-color: whitesmoke;
+}
+
+.carousel-item {
+    height: 350px;
+}
+
+.carousel-indicators li {
+    width: 10px;
     height: 10px;
+    border-radius: 100%;
 }
-a{font-size: 16px !important;}
-@media only screen and (max-width: 768px) {
-    .exp_text>span{
-      float: left!important;
-    }
-    .map{
-        text-align: center;
-    }
-    .dis_map{
-        text-align: center!important;
-    }
-    .container{
-        padding: 1rem!important;
-    }
-    .modal-dialog{
-        max-width: 100%!important;
-    }
-    #selectModalLabel{
-        padding: 10px !important;
-    }
-  }
 
+.carousel-indicators {
+    bottom: -50px;
+    background-color: #E8AE71;
+}
+
+.carousel slide {
+    height: 400px;
+    width: auto;
+}
+
+#arrow {
+    height: 30px;
+    width: auto;
+}
+
+input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.container-fluid, .row, #map, #map_parent {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+#map_parent {
+    position: relative;
+    padding: 0;
+}
+
+.leaflet-bar button {
+    height: 45px !important;
+    width: 45px !important;
+    font-size: 2em;
+    padding-top: 8px;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+    height: 45px !important;
+    width: 45px !important;
+    font-size: 2em;
+    padding-top: 8px;
+}
+
+.select2 {
+    width: 18% !important;
+    /*width: 50% !important;*/
+} 
+
+.title {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+@media only screen and (max-width: 450px) {
+    #weather_table table,
+    #weather_table thead,
+    #weather_table tbody,
+    #weather_table th,
+    #weather_table td,
+    #weather_table tr {
+        display: block;
+    }
+
+    #day_0_speed_mph, #day_0_speed_ms, #day_0_humidity {
+        display: none !important;
+    }
+}
